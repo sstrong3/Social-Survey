@@ -57,16 +57,40 @@ source("makeTables2016.R")
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+Now, we will look at a barchart that explores the relationship between how extramarital sex is viewed by those in a relationship ("Hooked up") and by those who are single.  
+```{r}
+barchartGC(xmsex_table,type="percent")
+```
+
+In each category of views ("wrong," "Hmmm," or "OK"), the majority of those who answered are in a relationship. Since this would seem to indicate that the majority of people in the survey are in a relationship, our results may be skewed. We can, however, see that hooked up people are more likely to view extramarital sex as wrong than those who are single. Out of those who view extramarital sex as wrong, 90% are hooked up and 10% are single. Interestingly enough, more people who are hooked up also appear to view extramarital sex as ok. Out of those who view extramarital sex as acceptable, 70% are hooked up and 30% are single.  
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+To view the results of our data numerically, we will use a two-way table with row and column percents using the `rowPerc` and `colPerc` functions.  
+```{r}
+rowPerc(xmsex_table)
+colPerc(xmsex_table)
+```
+
+The `rowPerc` verifies what was seen in the barchart; a greater percentage of people in a relationship account for the each of the views. 
+
+If we examine the `colPerc`, we can see that out of both groups of individuals, the majority viewed extramarital sex as wrong. Of those hooked up, 89.41% view extramarital sex as wrong. Of those who are single, 80.87% view sex as wrong. Less than 10% of each group consider extramarital sex acceptable.
 
 ### Inferential Results
 
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->  
+Next, we will test the independence of relationship status and view of extramarital sex using the chi-square test. We will state the null and alternative hypotheses for this test.  
 
+$H_0$: Relationship status is independent of one's view of extramarital sex.
 
+$H_a$: Relationship status and view of extramarital sex are related (not independent).
+
+```{r}
+chisqtestGC(xmsex_table, graph=TRUE, simulate.p.value = TRUE)
+```
+
+Our p-value is 0.0045. This means that under the assumption the null hypothesis is true, the probability of getting the results we just obtained is about .45% of the time. Since this value is very low (under the 0.05 standard of significance), there is not enough evidence to accept the null hypothesis. Instead, we must reject the null hypothesis in favor of the alternative hypothesis that one's relationship status does have an impact on the way they view extramarital sex.  
 
 # Discussion and Conclusion
 

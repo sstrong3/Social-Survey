@@ -17,11 +17,16 @@ source("Import_GSS2016_haven.R")
 
 <!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->   
 
-####This study deals with questions about possible relationships between views toward extramarital sex and sex, political views, and current relationship status. The data is from the 2016 general social survey.
+The 2016 General Social Survey consists of 2867 observations and 960 variables. In this report, we wish to examine the observations of views on marital sex according to three different variables: sex, political views, and current relationship status. Our goal is to determine whether or not there is a relationship between marital sex views and any of the aforementioned variables. 
 
 ```{r}
 source("makeTables2016.R")
 ```
+
+# Methods
+
+To achieve our goal, we first need to extract data from the social survey. Using the `xtabs` function, we make tables of each of the three variables we wish to consider in our report and store them in the `makeTables2016.R` file. Data of sex is stored as `xsex_sex` table, data of political views is stored as `xsex_polv` table, and data of relationship status is stored as `xmsex_table`. From each of the tables, we will examine and interpret graphical results (using barcharts) and numerical results (using row and column percentages). We will also perform inferential tests on each variable using Chi-Square tests to decide if our results can be applied to the population as a whole. Our report will be organized by variable in the following order: sex, political view, and relationship status. 
+
 
 # Sex
 
@@ -149,4 +154,4 @@ Our p-value is 0.0045. This means that under the assumption the null hypothesis 
 
 After examining survey results of views on extramarital sex according to individuals' sex, political views, and relationship status, we have determined that men, liberals, and single people are **slightly** more accepting of extramarital sex than women, conservatives, and those in a committed relationship. In each category, there appeared to be a relationship between the variable and the view. Even without consulting the survey, these are the results that one might logically conclude.  
   
-Beyond that, one thing is glaringly clear: the majority of the people surveyed consider extramarital sex to be wrong. In regards to gender, our results showed that both in the male and female group, the majority of individuals said extramarital sex was wrong. Across the political spectrum of conservative, moderate, and liberal, the majority of individuals said extramarital sex was wrong. Finally, among people who were single or in a relationship, the majority said extramarital sex was wrong. Therefore, it is possible that our society as a whole shares a moral view that extramarital sex is wrong, independent of any variables. While there may be a correlation between the variables and views, we cannot say that one causes the other. If we were to examine the views held by individuals according to different variables such as age, ethnicity, education level, and religion, we might be able to glean a clearer picture of whether or not this is the case, but considering what we have looked at so far, it seems probable that our results would be the same. 
+Beyond that, one thing is glaringly clear: the majority of the people surveyed consider extramarital sex to be wrong. In regards to gender, our results showed that both in the male and female group, the majority of individuals (80-90% of each group) said extramarital sex was wrong. Across the political spectrum of conservative, moderate, and liberal, the majority of individuals said extramarital sex was wrong. Finally, among people who were single or in a relationship, the majority said extramarital sex was wrong. Therefore, it is possible that our society as a whole shares a moral view that extramarital sex is wrong, independent of any variables. While there may be a correlation between the variables and views, we cannot say that one causes the other. If we were to examine the views held by individuals according to different variables such as age, ethnicity, education level, and religion, we might be able to glean a clearer picture of whether or not this is the case, but considering what we have looked at so far, it seems probable that our results would be the same. 

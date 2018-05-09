@@ -23,7 +23,6 @@ source("Import_GSS2016_haven.R")
 source("makeTables2016.R")
 ```
 
-
 # Sex
 
 ### Graphical Descriptive Results
@@ -41,6 +40,7 @@ From this barchart, it appears that there is a relationship between sex and view
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+Next, we will view the data numerically.  
 ```{r}
 rowPerc(xsex_sex)
 colPerc(xsex_sex)
@@ -103,23 +103,50 @@ chisqtestGC(xsex_polv, graph=TRUE, simulate.p.value = TRUE)
 
 Our p-value is 0.0005 (5e-04). If the null hypothesis is correct, we would expect to see these same results about .05% of the time. Since this very low p-value is far under the 0.05 standard of significance, there is not enough evidence to accept the null hypothesis. Instead, we reject the null hypothesis and conclude that it is likely that political view does influence one's views on extramartical sex. 
 
-
 # Relationship Status
 
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+Now, we will look at a barchart that explores the relationship between how extramarital sex is viewed by those in a relationship ("Hooked up") and by those who are single.  
+```{r}
+barchartGC(xmsex_table,type="percent")
+```
+
+In each category of views ("wrong," "Hmmm," or "OK"), the majority of those who answered are in a relationship. Since this would seem to indicate that the majority of people in the survey are in a relationship, our results may be skewed. We can, however, see that hooked up people are more likely to view extramarital sex as wrong than those who are single. Out of those who view extramarital sex as wrong, 90% are hooked up and 10% are single. Interestingly enough, more people who are hooked up also appear to view extramarital sex as ok. Out of those who view extramarital sex as acceptable, 70% are hooked up and 30% are single.  
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+To view the results of our data numerically, we will use a two-way table with row and column percents using the `rowPerc` and `colPerc` functions.  
+```{r}
+rowPerc(xmsex_table)
+colPerc(xmsex_table)
+```
+
+The `rowPerc` verifies what was seen in the barchart; a greater percentage of people in a relationship account for the each of the views. 
+
+If we examine the `colPerc`, we can see that out of both groups of individuals, the majority viewed extramarital sex as wrong. Of those hooked up, 89.41% view extramarital sex as wrong. Of those who are single, 80.87% view sex as wrong. Less than 10% of each group consider extramarital sex acceptable.
 
 ### Inferential Results
 
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->  
+Next, we will test the independence of relationship status and view of extramarital sex using the chi-square test. We will state the null and alternative hypotheses for this test.  
 
+$H_0$: Relationship status is independent of one's view of extramarital sex.
 
+$H_a$: Relationship status and view of extramarital sex are related (not independent).
+
+```{r}
+chisqtestGC(xmsex_table, graph=TRUE, simulate.p.value = TRUE)
+```
+
+Our p-value is 0.0045. This means that under the assumption the null hypothesis is true, the probability of getting the results we just obtained is about .45% of the time. Since this value is very low (under the 0.05 standard of significance), there is not enough evidence to accept the null hypothesis. Instead, we must reject the null hypothesis in favor of the alternative hypothesis that one's relationship status does have an impact on the way they view extramarital sex.  
 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
+
+After examining survey results of views on extramarital sex according to individuals' sex, political views, and relationship status, we have determined that men, liberals, and single people are **slightly** more accepting of extramarital sex than women, conservatives, and those in a committed relationship. In each category, there appeared to be a relationship between the variable and the view. Even without consulting the survey, these are the results that one might logically conclude.  
+  
+Beyond that, one thing is glaringly clear: the majority of the people surveyed consider extramarital sex to be wrong. In regards to gender, our results showed that both in the male and female group, the majority of individuals said extramarital sex was wrong. Across the political spectrum of conservative, moderate, and liberal, the majority of individuals said extramarital sex was wrong. Finally, among people who were single or in a relationship, the majority said extramarital sex was wrong. Therefore, it is possible that our society as a whole shares a moral view that extramarital sex is wrong, independent of any variables. While there may be a correlation between the variables and views, we cannot say that one causes the other. If we were to examine the views held by individuals according to different variables such as age, ethnicity, education level, and religion, we might be able to glean a clearer picture of whether or not this is the case, but considering what we have looked at so far, it seems probable that our results would be the same. 

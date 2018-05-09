@@ -1,82 +1,3 @@
-<<<<<<< HEAD
----
-title: "Social Survey"
-author: "Put your name here!"
-date: "put the date here"
-output:
-  html_document: default
----
-
-```{r include=FALSE,echo=FALSE}
-require(tigerstats)
-require(tidyverse)
-source("Import_GSS2016_haven.R")
-```
-<!-- We recommend you use git branches -- create a separate branch for each major section i.e. Introduction, Methods, Results, Inferential Results, and Discussion and Conclusions - leave the YAML block untouched until the final merge where you put in your own name !-->
-
-# Introduction
-
-<!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?!-->   
-
-####This study deals with questions about possible relationships between views toward extramarital sex and sex, political views, and current relationship status. The data is from the 2016 general social survey.
-
-```{r}
-source("makeTables2016.R")
-```
-
-
-# Sex
-
-### Graphical Descriptive Results
-
-<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Numerical Descriptive Results
-
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Inferential Results
-
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
-# Political Views
-
-### Graphical Descriptive Results
-
-<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Numerical Descriptive Results
-
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Inferential Results
-
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
-# Relationship Status
-
-### Graphical Descriptive Results
-
-<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Numerical Descriptive Results
-
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-
-### Inferential Results
-
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
-
-
-# Discussion and Conclusion
-
-<!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
-
-After examining survey results of views on extramarital sex according to individuals' sex, political views, and relationship status, we have determined that men, liberals, and single people are **slightly** more accepting of extramarital sex than women, conservatives, and those in a committed relationship. In each category, there appeared to be a relationship between the variable and the view. Even without consulting the survey, these are the results that one might logically conclude.  
-  
-Beyond that, one thing is glaringly clear: the majority of the people surveyed consider extramarital sex to be wrong. In regards to gender, our results showed that both in the male and female group, the majority of individuals said extramarital sex was wrong. Across the political spectrum of conservative, moderate, and liberal, the majority of individuals said extramarital sex was wrong. Finally, among people who were single or in a relationship, the majority said extramarital sex was wrong. Therefore, it is possible that our society as a whole shares a moral view that extramarital sex is wrong, independent of any variables. While there may be a correlation between the variables and views, we cannot say that one causes the other. If we were to examine the views held by individuals according to different variables such as age, ethnicity, education level, and religion, we might be able to glean a clearer picture of whether or not this is the case, but considering what we have looked at so far, it seems probable that our results would be the same. 
-=======
 ---
 title: "Social Survey"
 author: "Put your name here!"
@@ -146,14 +67,42 @@ According to the chi-square test, our p-value is 0.0351. This means that if the 
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+Now we will examine a barchart that shows views of extramarital sex according to three political views: liberal, moderate, or conservative.
+
+```{r}
+barchartGC(xsex_polv,type="percent")
+```
+
+From the above barchart, it appears that liberals have stronger views of extramarital sex being ok or sometimes wrong. Liberals are the least likely political group to consider extramarital sex wrong. On the opposite end of the spectrum, it appears that conservatives have a stronger opinion that it is wrong and are less likely to view extramarital sex as ok. Those with moderate political views fall somewhat in the middle. Moderates appear to be split evenly across the views.  
 
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+Next, we will view our data numerically in a two-way table.  
+
+```{r}
+rowPerc(xsex_polv)
+colPerc(xsex_polv)
+```
+
+The data in the `rowPerc` table above reinforces the idea that liberals had the strongest opinion in the ok and sometimes wrong categories of views; it also reinforced the idea that conservatives were less likely to consider extramarital sex as ok.  
+
+The other `colPerc` table reveals that the majority of people in each political view group consider extramarital sex to be wrong. 
 
 ### Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+We will now test the independence of political view and view of extramarital sex using the chi-square test. We will state the null and alternative hypotheses for this test.
+
+$H_0$: Political view is independent of one's view of extramarital sex.  
+$H_a$: Political view and view of extramarital sex are related (not independent).
+
+```{r}
+chisqtestGC(xsex_polv, graph=TRUE, simulate.p.value = TRUE)
+```
+
+Our p-value is 0.0005 (5e-04). If the null hypothesis is correct, we would expect to see these same results about .05% of the time. Since this very low p-value is far under the 0.05 standard of significance, there is not enough evidence to accept the null hypothesis. Instead, we reject the null hypothesis and conclude that it is likely that political view does influence one's views on extramartical sex. 
+
 
 # Relationship Status
 
@@ -174,4 +123,3 @@ According to the chi-square test, our p-value is 0.0351. This means that if the 
 # Discussion and Conclusion
 
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variables causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
->>>>>>> Sex
